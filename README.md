@@ -22,7 +22,7 @@
 - NestJS 11
 - Socket.IO (服务端)
 - TypeORM
-- PostgreSQL
+- SQLite (better-sqlite3)
 - JWT (身份验证)
 - bcrypt (密码加密)
 
@@ -79,17 +79,12 @@
 │   ├── .env
 │   └── package.json
 ├── CHANGELOG.md            # 更新日志
-└── README.md
+├── CODE_QUALITY.md         # 代码质量报告
+├── README.md               # 本文件
+└── STATUS.md               # 项目状态
 ```
 
 ## 安装和运行
-
-### 使用Docker Compose（推荐）
-
-1. 启动PostgreSQL和Redis：
-```bash
-docker-compose up -d
-```
 
 ### 后端
 
@@ -105,12 +100,7 @@ PORT=3001
 JWT_SECRET=your-secret-key-change-this-in-production
 JWT_EXPIRES_IN=7d
 
-DATABASE_HOST=localhost
-DATABASE_PORT=5432
-DATABASE_USERNAME=postgres
-DATABASE_PASSWORD=postgres
-DATABASE_NAME=chatapp
-DATABASE_SYNCHRONIZE=true
+DATABASE_PATH=/home/z/my-project/db/chatapp.db
 ```
 
 3. 启动后端服务：
@@ -131,16 +121,11 @@ npm install
 npm run dev
 ```
 
-3. 在浏览器中打开 http://localhost:5173
+### 服务状态
 
-### 一键启动
-
-在项目根目录下：
-```bash
-npm run dev
-```
-
-这会同时启动后端和前端服务。
+- **前端** ✅ 运行在 http://0.0.0.0:3000
+- **后端** ✅ 运行在 http://0.0.0.0:3001
+- **数据库** ✅ SQLite (better-sqlite3)
 
 ## API端点
 
@@ -179,12 +164,40 @@ npm run dev
 - `user:online` - 用户上线
 - `user:offline` - 用户下线
 
-## 开发说明
+## 代码质量
 
-- 前端运行在端口 5173
-- 后端运行在端口 3001
-- WebSocket连接通过Socket.IO实现
-- 数据库使用PostgreSQL
+本项目遵循严格的代码质量标准：
+
+### TypeScript
+- 强类型检查（strict mode）
+- 完整的类型定义
+- 无隐式any类型
+- 显式类型注解
+
+### 错误处理
+- 全面的try-catch块
+- 详细的错误日志
+- 用户友好的错误消息
+
+### 日志记录
+- 结构化日志
+- 操作追踪
+- 错误和警告日志
+
+详见 [CODE_QUALITY.md](CODE_QUALITY.md)
+
+## GitHub仓库
+
+项目源代码托管在GitHub：
+https://github.com/DingDing-bbb/modern-web-chat
+
+## 文档
+
+- [CHANGELOG.md](CHANGELOG.md) - 更新日志
+- [CODE_QUALITY.md](CODE_QUALITY.md) - 代码质量报告
+- [STATUS.md](STATUS.md) - 项目状态
+- [QUICKSTART.md](QUICKSTART.md) - 快速开始指南
+- [TROUBLESHOOTING.md](TROUBLESHOOTING.md) - 故障排除指南
 
 ## 许可证
 
