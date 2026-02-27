@@ -1,11 +1,19 @@
 import { io, Socket } from 'socket.io-client';
 import { useChatStore } from '../store/chatStore';
 import { useAuthStore } from '../store/authStore';
+import { Message } from '../types';
+
+interface SendMessagePayload {
+  content: string;
+  type?: string;
+  conversationId: string;
+  metadata?: Record<string, any>;
+}
 
 class WebSocketService {
   private socket: Socket | null = null;
 
-  connect(token: string) {
+  connect(token: string): Socket {
     if (this.socket?.connected) {
       return this.socket;
     }
@@ -21,7 +29,7 @@ class WebSocketService {
     return this.socket;
   }
 
-  private setupEventListeners() {
+  private setupEventListeners(): void {
     if (!this.socket) return;
 
     this.socket.on('connect', () => {
@@ -32,7 +40,7 @@ class WebSocketService {
       console.log('WebSocket disconnected');
     });
 
-    this.socket.on('new:message', (message: any) => {
+    this.socket.on('new:message', (message: Message) => {
       useChatStore.getState().addMessage(message.conversationId, message);
       useChatStore.getState().updateConversation(message.conversationId, {
         updatedAt: new Date().toISOString(),
@@ -59,32 +67,32 @@ class WebSocketService {
     });
   }
 
-  joinConversation(conversationId: string) {
+  joinConversation(conversationId: string): void {
     this.socket?.emit('join:conversation', { conversationId });
   }
 
-  leaveConversation(conversationId: string) {
+  leaveConversation(conversationId: string): void {
     this.socket?.emit('leave:conversation', { conversationId });
   }
 
-  sendMessage(data: { content: string; type?: string; conversationId: string; metadata?: any }) {
+  sendMessage(data: SendMessagePayload): void {
     this.socket?.emit('send:message', data);
   }
 
-  startTyping(conversationId: string) {
+  startTyping(conversationId: string): void {
     this.socket?.emit('typing:start', { conversationId });
   }
 
-  stopTyping(conversationId: string) {
+  stopTyping(conversationId: string): void {
     this.socket?.emit('typing:stop', { conversationId });
   }
 
-  disconnect() {
+  disconnect(): void {
     this.socket?.disconnect();
     this.socket = null;
   }
 
-  getSocket() {
+  getSocket(): Socket | null {
     return this.socket;
   }
 }

@@ -1,5 +1,10 @@
 import { create } from 'zustand';
-import { Conversation, Message, User, TypingUser } from '../types';
+import { Conversation, Message, User } from '../types';
+
+interface TypingUser {
+  userId: string;
+  isTyping: boolean;
+}
 
 interface ChatState {
   conversations: Conversation[];
@@ -25,11 +30,11 @@ export const useChatStore = create<ChatState>((set) => ({
   typingUsers: {},
   onlineUsers: new Set<string>(),
 
-  setConversations: (conversations) => set({ conversations }),
+  setConversations: (conversations: Conversation[]) => set({ conversations }),
 
-  setCurrentConversation: (conversation) => set({ currentConversation: conversation }),
+  setCurrentConversation: (conversation: Conversation | null) => set({ currentConversation: conversation }),
 
-  addMessage: (conversationId, message) =>
+  addMessage: (conversationId: string, message: Message) =>
     set((state) => ({
       messages: {
         ...state.messages,
@@ -37,7 +42,7 @@ export const useChatStore = create<ChatState>((set) => ({
       },
     })),
 
-  setMessages: (conversationId, messages) =>
+  setMessages: (conversationId: string, messages: Message[]) =>
     set((state) => ({
       messages: {
         ...state.messages,
@@ -45,7 +50,7 @@ export const useChatStore = create<ChatState>((set) => ({
       },
     })),
 
-  updateTypingUser: (conversationId, typingUser) =>
+  updateTypingUser: (conversationId: string, typingUser: TypingUser) =>
     set((state) => ({
       typingUsers: {
         ...state.typingUsers,
@@ -53,24 +58,24 @@ export const useChatStore = create<ChatState>((set) => ({
       },
     })),
 
-  addOnlineUser: (userId) =>
+  addOnlineUser: (userId: string) =>
     set((state) => ({
       onlineUsers: new Set([...state.onlineUsers, userId]),
     })),
 
-  removeOnlineUser: (userId) =>
+  removeOnlineUser: (userId: string) =>
     set((state) => {
       const newOnlineUsers = new Set(state.onlineUsers);
       newOnlineUsers.delete(userId);
       return { onlineUsers: newOnlineUsers };
     }),
 
-  addConversation: (conversation) =>
+  addConversation: (conversation: Conversation) =>
     set((state) => ({
       conversations: [conversation, ...state.conversations],
     })),
 
-  updateConversation: (conversationId, updates) =>
+  updateConversation: (conversationId: string, updates: Partial<Conversation>) =>
     set((state) => ({
       conversations: state.conversations.map((conv) =>
         conv.id === conversationId ? { ...conv, ...updates } : conv,

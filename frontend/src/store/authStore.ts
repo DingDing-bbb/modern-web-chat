@@ -1,6 +1,19 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { User, AuthResponse } from '../types';
+
+interface User {
+  id: string;
+  username: string;
+  email: string;
+  avatar: string | null;
+  status: string;
+  emailVerified: string;
+}
+
+interface AuthResponse {
+  accessToken: string;
+  user: User;
+}
 
 interface AuthState {
   user: User | null;
@@ -20,7 +33,7 @@ export const useAuthStore = create<AuthState>()(
       setAuth: (authResponse: AuthResponse) => {
         localStorage.setItem('token', authResponse.accessToken);
         set({
-          user: authResponse.user as User,
+          user: authResponse.user,
           token: authResponse.accessToken,
           isAuthenticated: true,
         });
