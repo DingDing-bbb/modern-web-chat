@@ -1,141 +1,191 @@
-# 🚀 Welcome to Z.ai Code Scaffold
+# 现代Web聊天应用
 
-A modern, production-ready web application scaffold powered by cutting-edge technologies, designed to accelerate your development with [Z.ai](https://chat.z.ai)'s AI-powered coding assistance.
+一个专业、现代的Web聊天应用，采用最新的技术栈构建，遵循Apple Human Interface Guidelines设计规范。
 
-## ✨ Technology Stack
+## 技术栈
 
-This scaffold provides a robust foundation built with:
+### 前端
+- React 19 + TypeScript
+- Vite 7
+- Tailwind CSS 4
+- Zustand (状态管理)
+- TanStack Query (数据获取)
+- Socket.IO Client (实时通信)
+- Framer Motion (动画)
+- Dexie.js (IndexedDB封装)
+- React Router DOM (路由)
+- date-fns (日期处理)
+- Lucide React (图标)
 
-### 🎯 Core Framework
-- **⚡ Next.js 16** - The React framework for production with App Router
-- **📘 TypeScript 5** - Type-safe JavaScript for better developer experience
-- **🎨 Tailwind CSS 4** - Utility-first CSS framework for rapid UI development
+### 后端
+- Node.js
+- NestJS 11
+- Socket.IO (服务端)
+- TypeORM
+- PostgreSQL
+- JWT (身份验证)
+- bcrypt (密码加密)
 
-### 🧩 UI Components & Styling
-- **🧩 shadcn/ui** - High-quality, accessible components built on Radix UI
-- **🎯 Lucide React** - Beautiful & consistent icon library
-- **🌈 Framer Motion** - Production-ready motion library for React
-- **🎨 Next Themes** - Perfect dark mode in 2 lines of code
+## 功能特性
 
-### 📋 Forms & Validation
-- **🎣 React Hook Form** - Performant forms with easy validation
-- **✅ Zod** - TypeScript-first schema validation
+### 用户功能
+- 用户注册（用户名、邮箱、密码）
+- 用户登录
+- 邮箱状态管理（已验证/未验证）
+- 用户在线状态
+- 头像显示
 
-### 🔄 State Management & Data Fetching
-- **🐻 Zustand** - Simple, scalable state management
-- **🔄 TanStack Query** - Powerful data synchronization for React
-- **🌐 Fetch** - Promise-based HTTP request
+### 聊天功能
+- 实时消息发送和接收
+- 私聊对话
+- 群组聊天
+- 对话列表
+- 消息历史
+- 输入状态指示
+- 用户在线状态显示
 
-### 🗄️ Database & Backend
-- **🗄️ Prisma** - Next-generation TypeScript ORM
-- **🔐 NextAuth.js** - Complete open-source authentication solution
+### UI/UX
+- 深色/浅色主题切换
+- 响应式设计
+- 流畅动画过渡
+- 现代化界面设计
+- Apple风格交互体验
 
-### 🎨 Advanced UI Features
-- **📊 TanStack Table** - Headless UI for building tables and datagrids
-- **🖱️ DND Kit** - Modern drag and drop toolkit for React
-- **📊 Recharts** - Redefined chart library built with React and D3
-- **🖼️ Sharp** - High performance image processing
+## 项目结构
 
-### 🌍 Internationalization & Utilities
-- **🌍 Next Intl** - Internationalization library for Next.js
-- **📅 Date-fns** - Modern JavaScript date utility library
-- **🪝 ReactUse** - Collection of essential React hooks for modern development
+```
+.
+├── backend/                 # NestJS后端
+│   ├── src/
+│   │   ├── auth/           # 认证模块
+│   │   ├── chat/           # 聊天模块
+│   │   ├── users/          # 用户模块
+│   │   ├── websocket/      # WebSocket服务
+│   │   ├── database/       # 数据库配置
+│   │   ├── guards/         # 认证守卫
+│   │   └── main.ts         # 应用入口
+│   ├── .env                # 环境变量
+│   └── package.json
+├── frontend/               # Vite + React前端
+│   ├── src/
+│   │   ├── components/     # React组件
+│   │   │   ├── auth/       # 认证组件
+│   │   │   ├── chat/       # 聊天组件
+│   │   │   └── ui/         # UI组件
+│   │   ├── store/          # Zustand状态管理
+│   │   ├── services/       # API和WebSocket服务
+│   │   ├── types/          # TypeScript类型
+│   │   └── utils/          # 工具函数
+│   ├── .env
+│   └── package.json
+├── CHANGELOG.md            # 更新日志
+└── README.md
+```
 
-## 🎯 Why This Scaffold?
+## 安装和运行
 
-- **🏎️ Fast Development** - Pre-configured tooling and best practices
-- **🎨 Beautiful UI** - Complete shadcn/ui component library with advanced interactions
-- **🔒 Type Safety** - Full TypeScript configuration with Zod validation
-- **📱 Responsive** - Mobile-first design principles with smooth animations
-- **🗄️ Database Ready** - Prisma ORM configured for rapid backend development
-- **🔐 Auth Included** - NextAuth.js for secure authentication flows
-- **📊 Data Visualization** - Charts, tables, and drag-and-drop functionality
-- **🌍 i18n Ready** - Multi-language support with Next Intl
-- **🚀 Production Ready** - Optimized build and deployment settings
-- **🤖 AI-Friendly** - Structured codebase perfect for AI assistance
+### 使用Docker Compose（推荐）
 
-## 🚀 Quick Start
-
+1. 启动PostgreSQL和Redis：
 ```bash
-# Install dependencies
-bun install
-
-# Start development server
-bun run dev
-
-# Build for production
-bun run build
-
-# Start production server
-bun start
+docker-compose up -d
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see your application running.
+### 后端
 
-## 🤖 Powered by Z.ai
-
-This scaffold is optimized for use with [Z.ai](https://chat.z.ai) - your AI assistant for:
-
-- **💻 Code Generation** - Generate components, pages, and features instantly
-- **🎨 UI Development** - Create beautiful interfaces with AI assistance  
-- **🔧 Bug Fixing** - Identify and resolve issues with intelligent suggestions
-- **📝 Documentation** - Auto-generate comprehensive documentation
-- **🚀 Optimization** - Performance improvements and best practices
-
-Ready to build something amazing? Start chatting with Z.ai at [chat.z.ai](https://chat.z.ai) and experience the future of AI-powered development!
-
-## 📁 Project Structure
-
-```
-src/
-├── app/                 # Next.js App Router pages
-├── components/          # Reusable React components
-│   └── ui/             # shadcn/ui components
-├── hooks/              # Custom React hooks
-└── lib/                # Utility functions and configurations
+1. 进入后端目录并安装依赖：
+```bash
+cd backend
+npm install
 ```
 
-## 🎨 Available Features & Components
+2. 配置环境变量（.env文件）：
+```env
+PORT=3001
+JWT_SECRET=your-secret-key-change-this-in-production
+JWT_EXPIRES_IN=7d
 
-This scaffold includes a comprehensive set of modern web development tools:
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+DATABASE_USERNAME=postgres
+DATABASE_PASSWORD=postgres
+DATABASE_NAME=chatapp
+DATABASE_SYNCHRONIZE=true
+```
 
-### 🧩 UI Components (shadcn/ui)
-- **Layout**: Card, Separator, Aspect Ratio, Resizable Panels
-- **Forms**: Input, Textarea, Select, Checkbox, Radio Group, Switch
-- **Feedback**: Alert, Toast (Sonner), Progress, Skeleton
-- **Navigation**: Breadcrumb, Menubar, Navigation Menu, Pagination
-- **Overlay**: Dialog, Sheet, Popover, Tooltip, Hover Card
-- **Data Display**: Badge, Avatar, Calendar
+3. 启动后端服务：
+```bash
+npm run start:dev
+```
 
-### 📊 Advanced Data Features
-- **Tables**: Powerful data tables with sorting, filtering, pagination (TanStack Table)
-- **Charts**: Beautiful visualizations with Recharts
-- **Forms**: Type-safe forms with React Hook Form + Zod validation
+### 前端
 
-### 🎨 Interactive Features
-- **Animations**: Smooth micro-interactions with Framer Motion
-- **Drag & Drop**: Modern drag-and-drop functionality with DND Kit
-- **Theme Switching**: Built-in dark/light mode support
+1. 进入前端目录并安装依赖：
+```bash
+cd frontend
+npm install
+```
 
-### 🔐 Backend Integration
-- **Authentication**: Ready-to-use auth flows with NextAuth.js
-- **Database**: Type-safe database operations with Prisma
-- **API Client**: HTTP requests with Fetch + TanStack Query
-- **State Management**: Simple and scalable with Zustand
+2. 启动前端开发服务器：
+```bash
+npm run dev
+```
 
-### 🌍 Production Features
-- **Internationalization**: Multi-language support with Next Intl
-- **Image Optimization**: Automatic image processing with Sharp
-- **Type Safety**: End-to-end TypeScript with Zod validation
-- **Essential Hooks**: 100+ useful React hooks with ReactUse for common patterns
+3. 在浏览器中打开 http://localhost:5173
 
-## 🤝 Get Started with Z.ai
+### 一键启动
 
-1. **Clone this scaffold** to jumpstart your project
-2. **Visit [chat.z.ai](https://chat.z.ai)** to access your AI coding assistant
-3. **Start building** with intelligent code generation and assistance
-4. **Deploy with confidence** using the production-ready setup
+在项目根目录下：
+```bash
+npm run dev
+```
 
----
+这会同时启动后端和前端服务。
 
-Built with ❤️ for the developer community. Supercharged by [Z.ai](https://chat.z.ai) 🚀
+## API端点
+
+### 认证
+- `POST /auth/register` - 用户注册
+- `POST /auth/login` - 用户登录
+- `POST /auth/validate` - 验证令牌
+
+### 用户
+- `GET /users/me` - 获取当前用户信息
+- `PUT /users/me` - 更新当前用户信息
+- `GET /users` - 获取所有用户
+- `GET /users/:id` - 获取指定用户信息
+
+### 聊天
+- `GET /chat/conversations` - 获取用户对话列表
+- `POST /chat/conversations` - 创建新对话
+- `GET /chat/conversations/:id` - 获取对话详情
+- `GET /chat/conversations/:id/messages` - 获取对话消息
+- `POST /chat/messages` - 发送消息
+- `PUT /chat/conversations/:id/read` - 标记消息为已读
+- `DELETE /chat/messages/:id` - 删除消息
+
+## WebSocket事件
+
+### 客户端发送
+- `join:conversation` - 加入对话房间
+- `leave:conversation` - 离开对话房间
+- `send:message` - 发送消息
+- `typing:start` - 开始输入
+- `typing:stop` - 停止输入
+
+### 服务端发送
+- `new:message` - 新消息通知
+- `user:typing` - 用户输入状态
+- `user:online` - 用户上线
+- `user:offline` - 用户下线
+
+## 开发说明
+
+- 前端运行在端口 5173
+- 后端运行在端口 3001
+- WebSocket连接通过Socket.IO实现
+- 数据库使用PostgreSQL
+
+## 许可证
+
+MIT
